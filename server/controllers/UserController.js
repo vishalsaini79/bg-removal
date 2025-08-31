@@ -23,7 +23,7 @@ const clerkWebhooks = async (req, res) => {
             case "user.created":{
 
                 const userData = {
-                    clerkId: data.Id,
+                    clerkId: data.id,
                     email: data.email_addresses[0].email_address,
                     firstName: data.first_name,
                     lastName: data.last_name,
@@ -53,7 +53,7 @@ const clerkWebhooks = async (req, res) => {
 
             case "user.deleted":{
 
-                await userModel.findOneAndUpdate({clerkId:data.id})
+                await userModel.findOneAndDelete({clerkId:data.id});
                 res.json({})
 
                 break;
